@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+	<title>Calculadora IMC</title>
+	<style>
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			font-family: Arial;
+			background: #ccc
+		}
+
+		div {
+			display: flex;
+			flex-direction: column;
+			width: 400px;
+			border: 1px solid #fafafa;
+			padding: 15px 25px;
+			border-radius: 10px;
+			background: #fafafa;
+		}
+
+		h1 {
+			text-align: center
+		}
+
+		input {
+			height: 25px;
+			margin-bottom: 10px;
+			padding: 0 5px;
+		}
+
+		button {
+			height: 50px;
+			font-size: 15px;
+			text-transform: uppercase;
+			font-weight: 700;
+			margin: 15px 0;
+			border: 0;
+			border-radius: 10px;
+			background: #020c81;
+			color: #fff;
+			cursor: pointer;
+		}
+			
+	</style>
+</head>
+<body>
+	<div>
+		<h1>Calculadora de IMC</h1>
+	
+		<label for="altura">Digite sua altura:</label>
+		<input type="number" id="altura">
+
+		<label for="peso">Digite seu peso:</label>
+		<input type="number" id="peso">
+
+		<button id="calcular">Calcular</button>
+	</div>
+
+	<script>
+		var calcular = document.getElementById("calcular");
+
+		calcular.addEventListener("click", () => {
+
+			//obter altura
+			var altura = +document.getElementById("altura").value;
+
+			//obter peso
+			var peso = +document.getElementById("peso").value;
+			
+			//calcular o IMC, utilizando a altura e o peso informados
+			var imc= peso / (altura * altura);
+
+			//com o IMC calculado, encontrar a situação na tabela. Se o resultado for:
+			var situacao = " ";
+
+			//abaixo de 17 entao a situação e Muito abaixo do peso
+			if (imc < 17)
+				situacao = "Muito abaixo do peso";
+			//entre 17 e 18,49 entao a situacao e Abaixo do peso
+			else if (imc >= 17 && imc < 18.49)
+ 				situacao = "Abaixo do peso";
+		 	//entre 18,50 e 24,99 entao a situacao e Peso normal
+			else if (imc >= 18.5 && imc <= 24.99)
+				situacao = "Peso normal";
+			//entre 25 e 29,99 entao a situacao e Acima do peso
+			else if (imc >= 25 && imc <= 29.99)
+				situacao = "Acima do peso";
+			//entre 30 e 34,99 entao a situacao e Obesidade
+			else if (imc >= 30 && imc <= 34.99)
+				situacao = "Obesidade I";
+			//entre 35 e 39,99 entao a situacao e Obesidade II (severa)
+			else if (imc >= 35 && imc <= 39.99)
+				situacao= "Obesidade II (severa)";
+			//acima de 40 entao a situacao e Obesidade III (morbida)
+			else if (imc >= 40)
+				situacao = "Obesidade III (morbida)";
+
+			//exibir situacao
+			alert(situacao);
+		});
+
+	</script>
+</body>
